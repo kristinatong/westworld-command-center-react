@@ -1,5 +1,6 @@
 import React, { Component }  from 'react';
 import { Card } from 'semantic-ui-react'
+import HostInfo from './HostInfo'
 
 class Host extends Component {
   state = {
@@ -10,17 +11,20 @@ class Host extends Component {
 
 
   handleClick = (e) => {
-    this.setState({clicked: !this.state.clicked})
+    // this.setState({clicked: !this.state.clicked})
+    this.props.setCurrentHost(this.props.host)
   }
 
   render(){
     let style = this.state.clicked ? {width: "50px", border: "2px solid red", borderRadius: "5px"} : {width: "50px"}
 
     return(
-      <Card onClick={this.handleClick} style={style}
-        raised
-        image={"https://a1cf74336522e87f135f-2f21ace9a6cf0052456644b80fa06d4f.ssl.cf2.rackcdn.com/images/characters/westworld-james.jpg"}
-      />
+      <React.Fragment>
+        <Card onClick={this.handleClick} style={style}
+          raised
+          image={this.props.host.imageUrl}
+        />
+      </React.Fragment>
     )
 }
 
